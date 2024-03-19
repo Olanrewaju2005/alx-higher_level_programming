@@ -3,14 +3,14 @@
 import MySQLdb
 import sys
 
-def list_state(username, password, db_name):
+if __name__ == "__main__":
     """
-    script that lists all states with a name starting with N (upper N) from the database hbtn_0e_0_usa
+    Entry point
     """
-    db = MySQLdb.connect(host="localhost", user=username, passwd=password, port=3306, database=db_name)
+    db = MySQL.connect(host="localhost", user=sys.argv[1], passwd=sys.argv[2], database=sys.argv[3], port=3306)
     cursor = db.cursor()
 
-    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY states.id ASC")
+    cursor.execute("""SELECT * FROM states WHERE name LIKE 'N%' ORDER BY states.id ASC""")
 
     states = cursor.fetchall()
 
@@ -19,13 +19,3 @@ def list_state(username, password, db_name):
 
     cursor.close()
     db.close()
-
-if __name__ == "__main__":
-    """
-    Entry point
-    """
-    username = sys.argv[1]
-    password = sys.argv[2]
-    db_name = sys.argv[3]
-
-    list_state(username, password, db_name)
