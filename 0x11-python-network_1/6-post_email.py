@@ -14,5 +14,5 @@ if __name__ == "__main__":
     response = requests.post(url, data=data)
 
     if response.status_code == 200:
-        body = response.text()
+        body = response.text
         print(body)
